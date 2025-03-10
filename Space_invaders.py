@@ -10,12 +10,12 @@ pygame.init()
 # Create screen
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Space Invasion')
-icon = pygame.image.load('ovni-volando.png')
+icon = pygame.image.load('UFO.png')
 pygame.display.set_icon(icon)
-background = pygame.image.load('fondo.jpg')
+background = pygame.image.load('Background.jpg')
 
 # Add music
-mixer.music.load('Musica.mp3')
+mixer.music.load('Music.mp3')
 mixer.music.play(-1)
 
 
@@ -27,13 +27,13 @@ def font_bytes(font):
 
 
 # Player
-player_img = pygame.image.load('nave-espacial.png')
+player_img = pygame.image.load('Spaceship.png')
 player_x = 368
 player_y = 500
 player_x_change = 0
 
 # Bullet
-bullet_img = pygame.image.load('bala.png')
+bullet_img = pygame.image.load('Bullet.png')
 bullet_x = 0
 bullet_y = 500
 bullet_y_change = 1
@@ -75,7 +75,7 @@ def is_collision(x1, x2, y1, y2):
 # Enemy class
 class Enemy:
     def __init__(self):
-        self.img = pygame.image.load('astronave.png')
+        self.img = pygame.image.load('Spacecraft.png')
         self.x = random.randint(40, 696)
         self.y = random.randint(50, 200)
         self.x_change = 0.3
