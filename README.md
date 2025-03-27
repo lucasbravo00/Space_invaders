@@ -81,3 +81,7 @@ Potential improvements for future versions:
 * High score leaderboard
 * Boss battles
 * Enhanced visual effects and animations
+
+## License
+
+Feel free to use, modify, and distribute this code for personal or educational purposes.
