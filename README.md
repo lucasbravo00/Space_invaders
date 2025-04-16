@@ -39,7 +39,7 @@ Space Invasion is a retro-style shoot 'em up game where players control a spaces
 
 4. Run the game:
    ```
-   python space_invasion.py
+   python Space_invaders.py
    ```
 
 ## Controls
