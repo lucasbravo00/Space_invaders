@@ -3,19 +3,25 @@ import random
 import math
 from pygame import mixer
 import io
+import os
 
 # Initialize pygame
 pygame.init()
 
+# Define the asset folder path
+asset_folder = 'assets/'
+
 # Create screen
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Space Invasion')
-icon = pygame.image.load('UFO.png')
+
+# Load images
+icon = pygame.image.load(os.path.join(asset_folder, 'images/UFO.png'))
 pygame.display.set_icon(icon)
-background = pygame.image.load('Background.jpg')
+background = pygame.image.load(os.path.join(asset_folder, 'images/Background.jpg'))
 
 # Add music
-mixer.music.load('Music.mp3')
+mixer.music.load(os.path.join(asset_folder, 'sounds/Music.mp3'))
 mixer.music.play(-1)
 
 
@@ -27,13 +33,13 @@ def font_bytes(font):
 
 
 # Player
-player_img = pygame.image.load('Spaceship.png')
+player_img = pygame.image.load(os.path.join(asset_folder, 'images/Spaceship.png'))
 player_x = 368
 player_y = 500
 player_x_change = 0
 
 # Bullet
-bullet_img = pygame.image.load('Bullet.png')
+bullet_img = pygame.image.load(os.path.join(asset_folder, 'images/Bullet.png'))
 bullet_x = 0
 bullet_y = 500
 bullet_y_change = 1
@@ -41,7 +47,7 @@ bullet_visible = False
 
 # Score
 score = 0
-font_bytes_io = font_bytes("FreeSansBold.ttf")  # Load font in memory
+font_bytes_io = font_bytes(os.path.join(asset_folder, 'fonts/FreeSansBold.ttf'))  # Load font in memory
 score_font = pygame.font.Font(font_bytes_io, 28)  # Font for score
 final_font = pygame.font.Font(font_bytes_io, 64)  # Font for "Game Over"
 text_x = 10
@@ -75,7 +81,7 @@ def is_collision(x1, x2, y1, y2):
 # Enemy class
 class Enemy:
     def __init__(self):
-        self.img = pygame.image.load('Spacecraft.png')
+        self.img = pygame.image.load(os.path.join(asset_folder, 'images/Spacecraft.png'))
         self.x = random.randint(40, 696)
         self.y = random.randint(50, 200)
         self.x_change = 0.3
@@ -133,7 +139,7 @@ while running:
                     player_x_change = 0.3
                 if event.key == pygame.K_SPACE:
                     if not bullet_visible:
-                        bullet_sound = mixer.Sound('Laser.mp3')
+                        bullet_sound = mixer.Sound(os.path.join(asset_folder, 'sounds/Laser.mp3'))
                         bullet_sound.play()
                         bullet_x = player_x
                         fire_bullet(bullet_x, bullet_y)
@@ -162,7 +168,7 @@ while running:
 
             # Check for collision between enemy and bullet
             if bullet_visible and is_collision(bullet_x, enemy.x, bullet_y, enemy.y):
-                explosion_sound = mixer.Sound('Explosion.mp3')
+                explosion_sound = mixer.Sound(os.path.join(asset_folder, 'sounds/Explosion.mp3'))
                 explosion_sound.play()
                 bullet_visible = False
                 bullet_y = 500
